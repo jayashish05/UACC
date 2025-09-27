@@ -83,7 +83,9 @@ export default function Home() {
       <TechStack />
       
       {/* Features Section */}
-      <FeaturesSection />
+      <div id="features">
+        <FeaturesSection />
+      </div>
       
       {/* Team Section */}
       <TeamSection />

@@ -8,9 +8,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: 'Products', href: '#products' },
-    { name: 'Resources', href: '#resources' },
-    { name: 'Pricing', href: '#pricing' },
+    { name: 'Features', href: '#features' },
+    { name: 'Contact Us', href: '#contact' },
   ];
 
   return (
@@ -27,7 +26,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             className="flex-shrink-0"
           >
-            <span className="text-lg font-bold text-white tracking-wide">LOGO®</span>
+            <span className="text-lg font-bold text-white tracking-wide">UACC</span>
           </motion.div>
 
           {/* Desktop Navigation - Centered */}
@@ -45,14 +44,15 @@ const Navbar = () => {
             </div>
           </div>
             
-          {/* Sign Up Button */}
-          <motion.button
+          {/* Try App Button */}
+          <motion.a
+            href="/signup"
             className="btn-primary text-xs font-semibold px-3 py-1 hidden sm:block cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Sign Up Now
-          </motion.button>
+            Try App for Free
+          </motion.a>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -95,13 +95,14 @@ const Navbar = () => {
               {item.name}
             </motion.a>
           ))}
-          <motion.button
-            className="btn-primary w-full mt-4 text-xs cursor-pointer"
+          <motion.a
+            href="/signup"
+            className="btn-primary w-full mt-4 text-xs cursor-pointer block text-center"
             onClick={() => setIsOpen(false)}
             whileTap={{ scale: 0.95 }}
           >
-            Sign Up Now
-          </motion.button>
+            Try App for Free
+          </motion.a>
         </div>
       </motion.div>
     </motion.nav>

@@ -26,13 +26,13 @@ const TeamSection = () => {
       skills: ["Python", "PostgreSQL", "Docker"],
     },
     {
-      name: "Krishna",
+      name: "Karthikeya",
       role: "DevOps Engineer",
       avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
       skills: ["Kubernetes", "Jenkins", "Azure"],
     },
     {
-      name: "Karthik",
+      name: "Krishna",
       role: "AI/ML Engineer",
       avatar: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
       skills: ["Python", "TensorFlow", "PyTorch"],

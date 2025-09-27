@@ -16,7 +16,7 @@ const HeroSection = () => {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center px-4 py-2 rounded-full bg-transparent border border-blue-400/30 backdrop-blur-sm mb-8"
           >
-            <span className="text-blue-300 text-sm font-medium">🚀 Launching 2025</span>
+            <span className="text-blue-300 text-sm font-medium">🤖 AI-Powered Communication</span>
           </motion.div>
 
           {/* Main Heading */}
@@ -26,9 +26,9 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
           >
-            <span className="text-white">Grow your users.</span>
+            <span className="text-white">Unified AI Communication</span>
             <br />
-            <span className="text-gradient">Smarter.</span>
+            <span className="text-gradient">Companion</span>
           </motion.h1>
 
           {/* Subheading */}
@@ -38,8 +38,8 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
           >
-            Powerful, self-serve product and growth analytics to help you convert, 
-            engage, and retain more users. Trusted by over 4,000 startups.
+            Revolutionizing Mobile Communication with AI. An intelligent system that transcribes calls, 
+            summarizes notifications, and evolves into your proactive digital secretary.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -49,20 +49,22 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 justify-center mb-20"
           >
-            <motion.button
-              className="btn-primary text-lg px-8 py-4 cursor-pointer"
+            <motion.a
+              href="/signup"
+              className="btn-primary text-lg px-8 py-4 cursor-pointer inline-block text-center"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Get Started Free
-            </motion.button>
-            <motion.button
-              className="btn-secondary text-lg px-8 py-4 cursor-pointer"
+              Try App for Free
+            </motion.a>
+            <motion.a
+              href="/signin"
+              className="btn-secondary text-lg px-8 py-4 cursor-pointer inline-block text-center"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Learn More
-            </motion.button>
+              Sign In
+            </motion.a>
           </motion.div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import TechStack from '../components/TechStack';
@@ -10,8 +10,15 @@ import ContactSection from '../components/ContactSection';
 
 export default function Home() {
   const videoRef = useRef(null);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+    
     const video = videoRef.current;
     let isReversing = false;
     let animationFrameId = null;
@@ -52,22 +59,24 @@ export default function Home() {
         }
       };
     }
-  }, []);
+  }, [isClient]);
 
   return (
     <div className="min-h-screen relative">
       {/* Video Background */}
       <div className="fixed inset-0 w-full h-full overflow-hidden -z-10">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/bg.mp4" type="video/mp4" />
-          {/* Fallback gradient background if video fails to load */}
-        </video>
+        {isClient && (
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/bg.mp4" type="video/mp4" />
+            {/* Fallback gradient background if video fails to load */}
+          </video>
+        )}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/10 to-cyan-900/20"></div>
         {/* Subtle black overlay for better text readability */}
         <div className="absolute inset-0 bg-black/40"></div>

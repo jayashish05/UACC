@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter } from 'lucide-react';
 import { useState } from 'react';
+import Image from 'next/image';
 
 const TeamSection = () => {
   const [isPaused, setIsPaused] = useState(false);
@@ -78,9 +79,11 @@ const TeamSection = () => {
               onMouseLeave={() => setIsPaused(false)}
             >
               <div className="flex flex-col items-center mb-6">
-                <img
+                <Image
                   src={member.avatar}
                   alt={member.name}
+                  width={80}
+                  height={80}
                   className="w-20 h-20 rounded-full mb-4 border-2 border-blue-400/30"
                 />
                 <div>

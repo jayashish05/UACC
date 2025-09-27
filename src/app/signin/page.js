@@ -226,7 +226,7 @@ export default function SignIn() {
           className="text-center mt-6"
         >
           <p className="text-gray-300">
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <a href="/signup" className="text-blue-400 hover:text-blue-300 font-medium transition-colors">
               Sign Up
             </a>

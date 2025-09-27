@@ -78,7 +78,7 @@ const ContactSection = () => {
             Get In <span className="text-gradient">Touch</span>
           </h2>
           <p className="text-xl max-w-3xl mx-auto" style={{color: '#9CA3AF'}}>
-            Ready to transform your ideas into reality? Let's discuss your project and see how we can help you grow.
+            Ready to transform your ideas into reality? Let&apos;s discuss your project and see how we can help you grow.
           </p>
         </motion.div>
 

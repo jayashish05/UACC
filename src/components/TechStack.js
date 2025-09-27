@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const TechStack = () => {
   const techItems = [
@@ -52,9 +53,11 @@ const TechStack = () => {
               key={`${tech.name}-${index}`}
               className="flex items-center space-x-3 px-6 min-w-fit"
             >
-              <img 
+              <Image 
                 src={tech.icon} 
                 alt={tech.name}
+                width={24}
+                height={24}
                 className="w-6 h-6 object-contain"
               />
               <span className="text-gray-300 text-base font-medium whitespace-nowrap">

@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/contexts/AuthContext';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import TechStack from '../components/TechStack';
@@ -11,10 +13,19 @@ import ContactSection from '../components/ContactSection';
 export default function Home() {
   const videoRef = useRef(null);
   const [isClient, setIsClient] = useState(false);
+  const { user, loading } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  // Redirect authenticated users to dashboard
+  useEffect(() => {
+    if (!loading && user) {
+      router.push('/dashboard');
+    }
+  }, [user, loading, router]);
 
   useEffect(() => {
     if (!isClient) return;

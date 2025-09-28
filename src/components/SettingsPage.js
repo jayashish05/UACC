@@ -17,6 +17,7 @@ import {
   Download,
   Upload
 } from 'lucide-react';
+import UserProfile from './UserProfile';
 
 const SettingsPage = () => {
   const [settings, setSettings] = useState({
@@ -88,43 +89,17 @@ const SettingsPage = () => {
         <p className="text-gray-400">Customize your UACC experience</p>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Profile Settings */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="glass-container p-6"
-        >
-          <div className="flex items-center mb-6">
-            <User className="w-6 h-6 text-blue-400 mr-3" />
-            <h3 className="text-xl font-semibold text-white">Profile Settings</h3>
-          </div>
+      {/* User Profile Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="mb-8"
+      >
+        <UserProfile />
+      </motion.div>
 
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">Name</label>
-              <input
-                type="text"
-                value={settings.name}
-                onChange={(e) => handleInputChange('name', e.target.value)}
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
-              <input
-                type="email"
-                value={settings.email}
-                onChange={(e) => handleInputChange('email', e.target.value)}
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-            <button className="w-full mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
-              Update Profile
-            </button>
-          </div>
-        </motion.div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         {/* AI Settings */}
         <motion.div
@@ -348,15 +323,77 @@ const SettingsPage = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 mt-6 pt-6 border-t border-gray-700">
-          <button className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center justify-center">
+          <button 
+            onClick={() => {
+              const dataStr = JSON.stringify(settings, null, 2);
+              const dataBlob = new Blob([dataStr], {type: 'application/json'});
+              const url = URL.createObjectURL(dataBlob);
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = 'uacc-settings.json';
+              link.click();
+              URL.revokeObjectURL(url);
+              alert('Settings exported successfully!');
+            }}
+            className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center justify-center"
+          >
             <Download className="w-4 h-4 mr-2" />
             Export Data
           </button>
-          <button className="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center justify-center">
+          <button 
+            onClick={() => {
+              const input = document.createElement('input');
+              input.type = 'file';
+              input.accept = '.json';
+              input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = (e) => {
+                    try {
+                      const importedSettings = JSON.parse(e.target.result);
+                      setSettings(prev => ({ ...prev, ...importedSettings }));
+                      alert('Settings imported successfully!');
+                    } catch (error) {
+                      alert('Error importing settings: Invalid file format');
+                    }
+                  };
+                  reader.readAsText(file);
+                }
+              };
+              input.click();
+            }}
+            className="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center justify-center"
+          >
             <Upload className="w-4 h-4 mr-2" />
             Import Data
           </button>
-          <button className="flex-1 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors">
+          <button 
+            onClick={() => {
+              if (confirm('Are you sure you want to reset all settings to defaults? This action cannot be undone.')) {
+                setSettings({
+                  name: 'Code Smiths',
+                  email: 'team@codesmiths.dev',
+                  aiEnabled: true,
+                  autoTranscription: true,
+                  smartSummarization: true,
+                  contextLearning: true,
+                  emailNotifications: true,
+                  pushNotifications: true,
+                  soundAlerts: false,
+                  priorityFilter: true,
+                  dataEncryption: true,
+                  onDeviceProcessing: true,
+                  shareAnalytics: false,
+                  darkMode: true,
+                  autoSync: true,
+                  backgroundSync: true
+                });
+                alert('Settings reset to defaults!');
+              }
+            }}
+            className="flex-1 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors"
+          >
             Reset to Defaults
           </button>
         </div>

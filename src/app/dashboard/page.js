@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { logOut } from '@/lib/firebase';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import DashboardSidebar from '@/components/DashboardSidebar';
 import CallHistory from '@/components/CallHistory';
@@ -84,9 +85,11 @@ export default function Dashboard() {
               <div className="flex items-center space-x-4 mb-6">
                 <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-700 flex items-center justify-center">
                   {userData?.photoURL ? (
-                    <img 
+                    <Image 
                       src={userData.photoURL} 
                       alt={`${userData.firstName} ${userData.lastName}`}
+                      width={64}
+                      height={64}
                       className="w-full h-full object-cover"
                     />
                   ) : (
@@ -99,7 +102,7 @@ export default function Dashboard() {
                   <h1 className="text-3xl font-bold text-white mb-1">
                     Welcome back, {userData?.firstName || 'User'}!
                   </h1>
-                  <p className="text-gray-400">Here's your communication overview.</p>
+                  <p className="text-gray-400">Here&apos;s your communication overview.</p>
                   <div className="flex items-center space-x-4 mt-2 text-sm text-gray-500">
                     <span>📧 {userData?.email}</span>
                     {userData?.phoneNumber && <span>📱 {userData.phoneNumber}</span>}

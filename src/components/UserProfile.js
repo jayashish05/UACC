@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useAuth } from '@/contexts/AuthContext';
 import { updateUserData } from '@/lib/firebase';
 import { User, Mail, Phone, Calendar, Camera, Save, Edit } from 'lucide-react';
+import Image from 'next/image';
 
 export default function UserProfile() {
   const { user, userData, setUserData } = useAuth();
@@ -67,9 +68,11 @@ export default function UserProfile() {
           <div className="relative">
             <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-700 flex items-center justify-center">
               {userData.photoURL ? (
-                <img 
+                <Image 
                   src={userData.photoURL} 
                   alt={`${userData.firstName} ${userData.lastName}`}
+                  width={96}
+                  height={96}
                   className="w-full h-full object-cover"
                 />
               ) : (

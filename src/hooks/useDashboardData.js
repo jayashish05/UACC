@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { getCallTranscripts, getEvents, getTasks, getUserMetadata, getNotifications } from '@/lib/firebase';
 
@@ -16,7 +16,7 @@ export const useDashboardData = () => {
     error: null
   });
 
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = useCallback(async () => {
     if (!user?.uid) return;
 
     try {
@@ -47,11 +47,11 @@ export const useDashboardData = () => {
         error: error.message
       }));
     }
-  };
+  }, [user?.uid]);
 
   useEffect(() => {
     fetchDashboardData();
-  }, [user?.uid]);
+  }, [fetchDashboardData]);
 
   // Helper function to check if a task is overdue
   const isOverdue = (task) => {
